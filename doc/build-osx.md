@@ -16,27 +16,21 @@ Then install [Homebrew](https://brew.sh).
 Dependencies
 ----------------------
 
-    brew install automake berkeley-db4 libtool boost miniupnpc openssl pkg-config protobuf python3 qt libevent
-
-See [dependencies.md](dependencies.md) for a complete overview.
+    brew install automake berkeley-db4 libtool boost --c++11 miniupnpc openssl pkg-config protobuf qt libevent
 
 If you want to build the disk image with `make deploy` (.dmg / optional), you need RSVG
 
     brew install librsvg
-
-If you want to build with ZeroMQ support
-    
-    brew install zeromq
 
 NOTE: Building with Qt4 is still supported, however, could result in a broken UI. Building with Qt5 is recommended.
 
 Build Tuxcoin Core
 ------------------------
 
-1. Clone the tuxcoin source code and cd into `tuxcoin-V2`
+1. Clone the tuxcoin source code and cd into `tuxcoin`
 
-        git clone https://github.com/bleach86/tuxcoin-V2
-        cd tuxcoin-V2
+        git clone https://github.com/TuxcoinOrg/Tuxcoin
+        cd tuxcoin
 
 2.  Build tuxcoin-core:
 
@@ -55,16 +49,6 @@ Build Tuxcoin Core
 4.  You can also create a .dmg that contains the .app bundle (optional):
 
         make deploy
-
-5.  Installation into user directories (optional):
-
-        make install
-
-    or
-
-        cd ~/tuxcoin/src
-        cp litecoind /usr/local/bin/
-        cp tuxcoin-cli /usr/local/bin/
 
 Running
 -------
@@ -110,6 +94,6 @@ Uncheck everything except Qt Creator during the installation process.
 Notes
 -----
 
-* Tested on OS X 10.8 through 10.13 on 64-bit Intel processors only.
+* Tested on OS X 10.8 through 10.12 on 64-bit Intel processors only.
 
 * Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/bitcoin/bitcoin/issues/7714)

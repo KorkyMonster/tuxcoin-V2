@@ -1,13 +1,23 @@
 TOR SUPPORT IN TUXCOIN
+======================
+
+It is possible to run Tuxcoin as a Tor hidden service, and connect to such services.
 
 The following directions assume you have a Tor proxy running on port 9050. Many distributions default to having a SOCKS proxy listening on port 9050, but others may not. In particular, the Tor Browser Bundle defaults to listening on port 9150. See [Tor Project FAQ:TBBSocksPort](https://www.torproject.org/docs/faq.html.en#TBBSocksPort) for how to properly
 configure Tor.
 
 
+1. Run tuxcoin behind a Tor proxy
 ---------------------------------
 
 The first step is running Tuxcoin behind a Tor proxy. This will already make all
 outgoing connections be anonymized, but more is possible.
+
+	-proxy=ip:port  Set the proxy server. If SOCKS5 is selected (default), this proxy
+	                server will be used to try to reach .onion addresses as well.
+
+	-onion=ip:port  Set the proxy server to use for tor hidden services. You do not
+	                need to set this if it's the same as -proxy. You can use -noonion
 	                to explicitly disable access to hidden service.
 
 	-listen         When using -proxy, listening is disabled by default. If you want
@@ -32,11 +42,11 @@ reachable from the Tor network. Add these lines to your /etc/tor/torrc (or equiv
 config file):
 
 	HiddenServiceDir /var/lib/tor/tuxcoin-service/
-	HiddenServicePort 42071 127.0.0.1:42071
+	HiddenServicePort 42072 127.0.0.1:42072
 	HiddenServicePort 42075 127.0.0.1:42075
 
 The directory can be different of course, but (both) port numbers should be equal to
-your tuxcoind's P2P listen port (42071 by default).
+your tuxcoind's P2P listen port (42072 by default).
 
 	-externalip=X   You can tell tuxcoin about its publicly reachable address using
 	                this option, and this can be a .onion address. Given the above
@@ -71,7 +81,7 @@ as well, use `discover` instead:
 
 	./tuxcoind ... -discover
 
-and open port 42071 on your firewall (or use -upnp).
+and open port 42072 on your firewall (or use -upnp).
 
 If you only want to use Tor to reach onion addresses, but not use it as a proxy
 for normal IPv4/IPv6 communication, use:

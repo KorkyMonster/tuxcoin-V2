@@ -1,12 +1,12 @@
-// Copyright (c) 2014-2017 The Bitcoin Core developers
+// Copyright (c) 2014-2016 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <chainparams.h>
-#include <validation.h>
-#include <net.h>
+#include "chainparams.h"
+#include "validation.h"
+#include "net.h"
 
-#include <test/test_bitcoin.h>
+#include "test/test_bitcoin.h"
 
 #include <boost/signals2/signal.hpp>
 #include <boost/test/unit_test.hpp>
@@ -33,7 +33,6 @@ static void TestBlockSubsidyHalvings(const Consensus::Params& consensusParams)
         BOOST_CHECK_EQUAL(nDonation, nPreviousDonation / 2);
         nPreviousSubsidy = nSubsidy;
         nPreviousDonation = nDonation;
-
     }
     BOOST_CHECK_EQUAL(GetBlockSubsidy(maxHalvings * consensusParams.nSubsidyHalvingInterval, consensusParams), 0);
     BOOST_CHECK_EQUAL(GetDevSubsidy(maxHalvings * consensusParams.nSubsidyHalvingInterval, consensusParams), 0);

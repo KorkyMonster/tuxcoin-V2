@@ -1,4 +1,7 @@
 Contributing to Tuxcoin Core
+============================
+
+The Tuxcoin Core project operates an open contributor model where anyone is
 welcome to contribute towards development in the form of peer review, testing
 and patches. This document explains the practical process and guidelines for
 contributing.
@@ -21,9 +24,9 @@ facilitates social contribution, easy testing and peer review.
 
 To contribute a patch, the workflow is as follows:
 
-  1. Fork repository
-  1. Create topic branch
-  1. Commit patches
+  - Fork repository
+  - Create topic branch
+  - Commit patches
 
 The project coding conventions in the [developer notes](doc/developer-notes.md)
 must be adhered to.
@@ -39,8 +42,8 @@ in init.cpp") in which case a single title line is sufficient. Commit messages s
 helpful to people reading your code in the future, so explain the reasoning for
 your decisions. Further explanation [here](http://chris.beams.io/posts/git-commit/).
 
-If a particular commit references another issue, please add the reference. For
-example: `refs #1234` or `fixes #4321`. Using the `fixes` or `closes` keywords
+If a particular commit references another issue, please add the reference, for
+example `refs #1234`, or `fixes #4321`. Using the `fixes` or `closes` keywords
 will cause the corresponding issue to be closed when the pull request is merged.
 
 Please refer to the [Git manual](https://git-scm.com/doc) for more information
@@ -54,12 +57,12 @@ the pull request affects. Valid areas as:
 
   - *Consensus* for changes to consensus critical code
   - *Docs* for changes to the documentation
-  - *Qt* for changes to tuxcoin-qt
+  - *Qt* for changes to bitcoin-qt
   - *Mining* for changes to the mining code
   - *Net* or *P2P* for changes to the peer-to-peer network code
   - *RPC/REST/ZMQ* for changes to the RPC, REST or ZMQ APIs
   - *Scripts and tools* for changes to the scripts and tools
-  - *Tests* for changes to the tuxcoin unit tests or QA tests
+  - *Tests* for changes to the bitcoin unit tests or QA tests
   - *Trivial* should **only** be used for PRs that do not change generated
     executable code. Notably, refactors (change of function arguments and code
     reorganization) and changes in behavior should **not** be marked as trivial.
@@ -78,11 +81,7 @@ Examples:
     Qt: Add feed bump button
     Trivial: Fix typo in init.cpp
 
-Note that translations should not be submitted as pull requests, please see
-[Translation Process](https://github.com/bitcoin/bitcoin/blob/master/doc/translation_process.md) 
-for more information on helping with translations.
-
-If a pull request is not to be considered for merging (yet), please
+If a pull request is specifically not to be considered for merging (yet) please
 prefix the title with [WIP] or use [Tasks Lists](https://help.github.com/articles/basic-writing-and-formatting-syntax/#task-lists)
 in the body of the pull request to indicate tasks are pending.
 
@@ -154,14 +153,6 @@ behaviour of code within the pull request (bugs must be preserved as is).
 Project maintainers aim for a quick turnaround on refactoring pull requests, so
 where possible keep them short, uncomplex and easy to verify.
 
-Pull requests that refactor the code should not be made by new contributors. It
-requires a certain level of experience to know where the code belongs to and to
-understand the full ramification (including rebase effort of open pull requests).
-
-Trivial pull requests or pull requests that refactor the code with no clear
-benefits may be immediately closed by the maintainers to reduce unnecessary
-workload on reviewing.
-
 
 "Decision Making" Process
 -------------------------
@@ -182,7 +173,7 @@ In general, all pull requests must:
     the project (for example refactoring for modularisation);
   - Be well peer reviewed;
   - Have unit tests and functional tests where appropriate;
-  - Follow code style guidelines ([C++](doc/developer-notes.md), [functional tests](test/functional/README.md));
+  - Follow code style guidelines;
   - Not break the existing test suite;
   - Where bugs are fixed, where possible, there should be unit tests
     demonstrating the bug and also proving the fix. This helps prevent regression.

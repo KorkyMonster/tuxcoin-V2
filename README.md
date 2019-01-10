@@ -1,4 +1,22 @@
 Tuxcoin Core integration/staging tree
+=====================================
+
+[![Build Status](https://travis-ci.org/TuxcoinOrg/Tuxcoin.svg?branch=master)](https://travis-ci.org/TuxcoinOrg/Tuxcoin)
+
+http://tuxcoin.io
+
+What is Tuxcoin?
+----------------
+
+Tuxcoin is an experimental digital currency that enables instant payments to
+anyone, anywhere in the world. Tuxcoin uses peer-to-peer technology to operate
+with no central authority: managing transactions and issuing money are carried
+out collectively by the network. Tuxcoin Core is the name of open source
+software which enables the use of this currency.
+
+For more information, as well as an immediately useable, binary version of
+the Tuxcoin Core software, see 
+[http://tuxcoin.io](http://tuxcoin.io).
 
 License
 -------
@@ -11,12 +29,12 @@ Development Process
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
 completely stable. 
-[Tags](https://github.com/bleach86/tuxcoin-V2/tags) are created
+[Tags](https://github.com/tuxcoinorg/tuxcoin/tags) are created
 regularly to indicate new official, stable release versions of Tuxcoin Core.
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Developer Discord can be found [Here](https://discord.gg/NwAsQZU).
+Developer Discord can be found [Here](https://discord.gg/Vp4Xz26).
 
 Testing
 -------

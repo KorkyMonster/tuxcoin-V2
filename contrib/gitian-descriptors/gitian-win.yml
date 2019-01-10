@@ -1,5 +1,5 @@
 ---
-name: "tuxcoin-win-0.17"
+name: "tuxcoin-win-0.15"
 enable_cache: true
 suites:
 - "trusty"
@@ -22,7 +22,7 @@ packages:
 - "ca-certificates"
 - "python"
 remotes:
-- "url": "https://github.com/bleach86/tuxcoin-V2.git"
+- "url": "https://github.com/tuxcoin-project/tuxcoin.git"
   "dir": "tuxcoin"
 files: []
 script: |

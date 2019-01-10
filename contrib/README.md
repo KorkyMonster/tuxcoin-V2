@@ -26,7 +26,7 @@ Contains files used to package tuxcoind/tuxcoin-qt
 for Debian-based Linux systems. If you compile tuxcoind/tuxcoin-qt yourself, there are some useful files here.
 
 ### [Gitian-descriptors](/contrib/gitian-descriptors) ###
-Files used during the gitian build process. For more information about gitian, see the [the Bitcoin Core documentation repository](https://github.com/bitcoin-core/docs).
+Notes on getting Gitian builds up and running using KVM.
 
 ### [Gitian-keys](/contrib/gitian-keys)
 PGP keys used for signing Tuxcoin Core [Gitian release](/doc/release-process.md) results.
@@ -47,4 +47,4 @@ Test and Verify Tools
 Utilities to generate test vectors for the data-driven Tuxcoin tests.
 
 ### [Verify Binaries](/contrib/verifybinaries) ###
-This script attempts to download and verify the signature file SHA256SUMS.asc from tuxcoin.io.
+This script attempts to download and verify the signature file SHA256SUMS.asc from tuxcoin.org.
