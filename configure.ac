@@ -177,6 +177,12 @@ AC_ARG_ENABLE([glibc-back-compat],
   [use_glibc_compat=$enableval],
   [use_glibc_compat=no])
 
+AC_ARG_ENABLE([experimental-asm],
+  [AS_HELP_STRING([--enable-experimental-asm],
+  [Enable experimental assembly routines (default is no)])],
+  [experimental_asm=$enableval],
+  [experimental_asm=yes])
+
 AC_ARG_ENABLE([asm],
   [AS_HELP_STRING([--enable-asm],
   [Enable assembly routines (default is yes)])],
@@ -186,6 +192,10 @@ AC_ARG_ENABLE([asm],
 if test "x$use_asm" = xyes; then
   AC_DEFINE(USE_ASM, 1, [Define this symbol to build in assembly routines])
 fi
+
+
+AC_DEFINE(EXPERIMENTAL_ASM, 1, [Define this symbol to build in experimental assembly routines])
+
 
 AC_ARG_WITH([system-univalue],
   [AS_HELP_STRING([--with-system-univalue],
@@ -212,6 +222,9 @@ AC_ARG_ENABLE(man,
                     [do not install man pages (default is to install)])],,
     enable_man=yes)
 AM_CONDITIONAL(ENABLE_MAN, test "$enable_man" != no)
+
+
+AM_CONDITIONAL([EXPERIMENTAL_ASM],[true])
 
 # Enable debug
 AC_ARG_ENABLE([debug],
