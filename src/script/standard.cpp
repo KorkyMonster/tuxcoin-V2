@@ -1,14 +1,14 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2017 The Bitcoin Core developers
+// Copyright (c) 2009-2016 The Bitcoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <script/standard.h>
+#include "script/standard.h"
 
-#include <pubkey.h>
-#include <script/script.h>
+#include "pubkey.h"
+#include "script/script.h"
 #include <util.h>
-#include <utilstrencodings.h>
+#include "utilstrencodings.h"
 
 
 typedef std::vector<unsigned char> valtype;
@@ -35,6 +35,9 @@ const char* GetTxnOutputType(txnouttype t)
     return nullptr;
 }
 
+/**
+ * Return public keys or hashes from scriptPubKey, for 'standard' transaction types.
+ */
 bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<std::vector<unsigned char> >& vSolutionsRet)
 {
     // Templates
@@ -81,7 +84,7 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<std::v
             vSolutionsRet.push_back(std::vector<unsigned char>{(unsigned char)witnessversion});
             vSolutionsRet.push_back(std::move(witnessprogram));
             return true;
-        }
+	}
         return false;
     }
 
@@ -222,7 +225,7 @@ bool ExtractDestination(const CScript& scriptPubKey, CTxDestination& addressRet)
         unk.length = vSolutions[1].size();
         addressRet = unk;
         return true;
-    }
+}
     // Multisig txns have more than one address...
     return false;
 }
@@ -274,7 +277,7 @@ class CScriptVisitor : public boost::static_visitor<bool>
 private:
     CScript *script;
 public:
-    explicit CScriptVisitor(CScript *scriptin) { script = scriptin; }
+    CScriptVisitor(CScript *scriptin) { script = scriptin; }
 
     bool operator()(const CNoDestination &dest) const {
         script->clear();
@@ -292,7 +295,6 @@ public:
         *script << OP_HASH160 << ToByteVector(scriptID) << OP_EQUAL;
         return true;
     }
-
     bool operator()(const WitnessV0KeyHash& id) const
     {
         script->clear();
@@ -312,7 +314,7 @@ public:
         script->clear();
         *script << CScript::EncodeOP_N(id.version) << std::vector<unsigned char>(id.program, id.program + id.length);
         return true;
-    }
+}
 };
 } // namespace
 
@@ -340,6 +342,30 @@ CScript GetScriptForMultisig(int nRequired, const std::vector<CPubKey>& keys)
     return script;
 }
 
+/*
+CScript GetScriptForWitness(const CScript& redeemscript)
+{
+    CScript ret;
+
+    txnouttype typ;
+    std::vector<std::vector<unsigned char> > vSolutions;
+    if (Solver(redeemscript, typ, vSolutions)) {
+        if (typ == TX_PUBKEY) {
+            unsigned char h160[20];
+            CHash160().Write(&vSolutions[0][0], vSolutions[0].size()).Finalize(h160);
+            ret << OP_0 << std::vector<unsigned char>(&h160[0], &h160[20]);
+            return ret;
+        } else if (typ == TX_PUBKEYHASH) {
+           ret << OP_0 << vSolutions[0];
+           return ret;
+        }
+    }
+    uint256 hash;
+    CSHA256().Write(&redeemscript[0], redeemscript.size()).Finalize(hash.begin());
+    ret << OP_0 << ToByteVector(hash);
+    return ret;
+}
+*/
 CScript GetScriptForWitness(const CScript& redeemscript)
 {
     CScript ret;
@@ -357,6 +383,7 @@ CScript GetScriptForWitness(const CScript& redeemscript)
     CSHA256().Write(&redeemscript[0], redeemscript.size()).Finalize(hash.begin());
     return GetScriptForDestination(WitnessV0ScriptHash(hash));
 }
+
 
 bool IsValidDestination(const CTxDestination& dest) {
     return dest.which() != 0;

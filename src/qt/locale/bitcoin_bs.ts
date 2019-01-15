@@ -32,10 +32,6 @@
     </context>
 <context>
     <name>Intro</name>
-    <message>
-        <source>Tuxcoin</source>
-        <translation>Tuxcoin</translation>
-    </message>
     </context>
 <context>
     <name>ModalOverlay</name>
